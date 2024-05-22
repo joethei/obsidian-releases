@@ -1,0 +1,41 @@
+name: Plugin
+description: Submit a new plugin for review
+title: "Add plugin: "
+body:
+  - type: input
+    id: repo
+    attributes:
+      label: Repository
+      description: Where is your plugin hosted
+      placeholder: obsidianmd/obsidian-sample-plugin
+    validations:
+      required: true
+ - type: dropdown
+    id: os
+    attributes:
+      label: I have tested the plugin on
+      multiple: true
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Android
+        - iOS
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: terms
+      description:
+      options:
+        - label: "GitHub release name matches the exact version number specified in my manifest.json (Note: Use the exact version number, don't include a prefix `v`)"
+          required: true
+        - label: My README.md describes the plugin's purpose and provides clear usage instructions.
+          required: true
+        - label: I have read the developer policies at https://docs.obsidian.md/Developer+policies, and have assessed my plugins's adherence to these policies.
+          required: true
+        - label: I have read the tips in https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines and have self-reviewed my plugin to avoid these common pitfalls.
+          required: true
+        - label: I have added a license in the `LICENSE` file.
+          required: true
+        - label:  My project respects and is compatible with the original license of any code from other plugins that I'm using. I have given proper attribution to these other projects in my `README.md`.
+          required: true
