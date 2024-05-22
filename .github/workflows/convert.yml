@@ -39,7 +39,7 @@ jobs:
           git push -u origin post-${{ steps.random.outputs.value }}
         shell: bash
       - name: convert to PR
-        run: gh api repos/joethei/obsidian-releases/pulls -f head=post-${{ steps.random.outputs.value }} -f base=main -f "Add plugin" -F issue=${{ github.event.issue.number }}
+        run: gh api repos/joethei/obsidian-releases/pulls -f head=post-${{ steps.random.outputs.value }} -f base=main -f title="Add plugin" -F issue=${{ github.event.issue.number }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
