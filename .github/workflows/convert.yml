@@ -31,7 +31,7 @@ jobs:
           force: '${{ inputs.force }}'
       - name: Append entry
         run: | 
-          cat community-plugins.json | jq '.[. | length] |= .+ { id: "calibre-reader", name: "Calibre reader", author: "test", description: "test", repo: "joethei/obsidian-calibre"}' > community-plugins.json
+          cat community-plugins.json > jq '.[. | length] |= .+ { id: "calibre-reader", name: "Calibre reader", author: "test", description: "test", repo: "joethei/obsidian-calibre"}' > community-plugins.json
       - name: commit and push new file
         run: |
           git config user.name "GitHub Actions Bot"
