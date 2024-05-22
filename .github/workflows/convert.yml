@@ -33,7 +33,6 @@ jobs:
         run: | 
           jq '.[. | length] += { id: "calibre-reader", name: "Calibre reader", author: "test", description: "test", repo: "joethei/obsidian-calibre"}' community-plugins.json > tmp.json
           mv tmp.json community-plugins.json
-          rm tmp.json
       - name: commit and push new file
         run: |
           git config user.name "GitHub Actions Bot"
