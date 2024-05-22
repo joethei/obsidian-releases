@@ -1,0 +1,48 @@
+name: "Convert issue to PR"
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+      - name: Generate random number
+        id: random
+        run: echo "::set-output name=value::$(echo $RANDOM)"
+        shell: bash
+      - name: Example how to use the output
+        run: echo "${{ steps.random.outputs.value }}"
+        shell: bash
+      - name: create branch
+        uses: peterjgrainger/action-create-branch@v2.0.1
+        with:
+          # The branch to create
+          branch: post-${{ steps.random.outputs.value }}
+      - name: setup jq
+        uses: dcarbone/install-jq-action@v2
+        with:
+          version: '${{ inputs.version }}'
+          force: '${{ inputs.force }}'
+      - name: Append entry
+        run: "jq '[. | length] | = . {
+          id: 'calibre-reader',
+          name: 'Calibre reader',
+          author: 'test',
+          description: 'test',
+          repo: 'joethei/obsidian-calibre'
+        }'"
+
+      - name: commit and push new file
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git add .
+          git commit -m "New post"
+          git push -u origin post-${{ steps.random.outputs.value }}
+        shell: bash
+      - name: convert to PR
+        run: gh api repos/joethei/obsidian-releases/pulls -f head=post-${{ steps.random.outputs.value }} -f base=main -f "Add plugin" -F issue=${{ github.event.issue.number }}
