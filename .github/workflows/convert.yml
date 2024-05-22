@@ -30,14 +30,13 @@ jobs:
           version: '${{ inputs.version }}'
           force: '${{ inputs.force }}'
       - name: Append entry
-        run: "jq .[. | length] |= .+ {
+        run: 'jq .[. | length] |= .+ {
           id: "calibre-reader",
           name: "Calibre reader",
           author: "test",
           description: "test",
           repo: "joethei/obsidian-calibre"
-        }"
-
+        }'
       - name: commit and push new file
         run: |
           git config user.name "GitHub Actions Bot"
