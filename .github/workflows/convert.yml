@@ -2,7 +2,7 @@ name: "Convert issue to PR"
 
 on:
   issues:
-    types: [opened]
+    types: [opened, reopened]
 
 jobs:
   convert:
@@ -14,15 +14,11 @@ jobs:
         id: random
         run: echo "::set-output name=value::$(echo $RANDOM)"
         shell: bash
-      - name: Example how to use the output
-        run: echo "${{ steps.random.outputs.value }}"
-        shell: bash
       - name: create branch
         uses: peterjgrainger/action-create-branch@v2.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          # The branch to create
           branch: post-${{ steps.random.outputs.value }}
       - name: setup jq
         uses: dcarbone/install-jq-action@v2
@@ -35,10 +31,10 @@ jobs:
           mv tmp.json community-plugins.json
       - name: commit and push new file
         run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
+          git config --local user.name "Obsidian Bot"
+          git config --local user.email 'admin@obsidian.md'
           git add .
-          git commit -m "New post"
+          git commit -m "Add plugin: test"
           git push -u origin post-${{ steps.random.outputs.value }}
         shell: bash
       - name: convert to PR
