@@ -7,7 +7,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: github.event.issue.pull_request && contains(github.event.comment.body, '/rebase') && github.event.comment.author_association == 'COLLABORATOR'
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/rebase') && github.event.comment.author_association == 'OWNER'
     steps:
       - name: setup git
         run: |
