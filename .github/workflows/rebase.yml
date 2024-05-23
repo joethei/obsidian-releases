@@ -17,6 +17,7 @@ jobs:
         run: |
           git config --local user.name "Obsidian Bot"
           git config --local user.email 'admin@obsidian.md'
+          git switch -c pull-${{ github.event.issue.number }}
       - name: setup jq
         uses: dcarbone/install-jq-action@v2
       - name: rebase, append, commit
