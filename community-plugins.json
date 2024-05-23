@@ -11681,5 +11681,12 @@
       "author": "ichichikin",
       "description": "Interactivity allows you to run shell commands and scripts directly within your notes, providing their output right alongside your written content, making your note-taking process more dynamic and interactive.",
       "repo": "ichichikin/obsidian-plugin-interactivity"
+    },
+    {
+      "id": "test-plugin",
+      "name": "test-plugin",
+      "author": "test",
+      "description": "test",
+      "repo": "joethei/obsidian-plugin-test"
     }
 ]
