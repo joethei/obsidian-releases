@@ -21,7 +21,7 @@ jobs:
         uses: dcarbone/install-jq-action@v2
       - name: rebase, append, commit
         run: |
-          LAST=$(jq '. | last' community-plugins.json)"
+          LAST=$(jq '. | last' community-plugins.json)
           git rebase -X theirs master
           jq '.[. | length] += env.LAST' community-plugins.json > tmp.json
           mv tmp.json community-plugins.json
