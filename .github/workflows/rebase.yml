@@ -27,4 +27,4 @@ jobs:
           mv tmp.json community-plugins.json
           git add .
           git commit -m "move to last"
-          git push -f
+          git push -f -u origin/pull-${{ github.event.issue.number }}
