@@ -23,7 +23,7 @@ jobs:
         run: |
           LAST=$(jq '. | last' community-plugins.json)"
           git rebase -X theirs master
-          jq --arg LAST "$LAST" '.[. | length] += $LAST' community-plugins.json > tmp.json
+          jq '.[. | length] += env.LAST' community-plugins.json > tmp.json
           mv tmp.json community-plugins.json
           git add .
           git commit -m "move to last"
