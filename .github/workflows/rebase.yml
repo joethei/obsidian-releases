@@ -1,0 +1,29 @@
+name: "rebase on comment"
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/rebase') && github.event.comment.author_association == 'COLLABORATOR'
+    steps:
+      - name: setup git
+        run: |
+          git config --local user.name "Obsidian Bot"
+          git config --local user.email 'admin@obsidian.md'
+      - name: setup jq
+        uses: dcarbone/install-jq-action@v2
+      - name: get last entry
+        id: last
+        run: |
+          echo "$ENTRY=$(jq '. | last') community-plugins.json" >> $GITHUB_OUTPUT
+      - name: rebase, append, commit
+        run: |
+          git rebase -X theirs master
+          jq '.[. | length] += ${{ steps.last.outputs.ENTRY }}' community-plugins.json > tmp.json
+          mv tmp.json community-plugins.json
+          git add .
+          git commit -m "move to last"
+          git push -f
