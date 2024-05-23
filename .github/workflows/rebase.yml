@@ -22,7 +22,7 @@ jobs:
       - name: get last entry
         id: last
         run: |
-          echo "$ENTRY=$(jq '. | last') community-plugins.json" >> $GITHUB_OUTPUT
+          echo "$ENTRY=$(jq '. | last' community-plugins.json") >> $GITHUB_OUTPUT
       - name: rebase, append, commit
         run: |
           git rebase -X theirs master
