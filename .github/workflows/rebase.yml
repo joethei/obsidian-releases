@@ -5,7 +5,7 @@ on:
     types: [created]
 
 jobs:
-  deploy:
+  rebase:
     runs-on: ubuntu-latest
     if: github.event.issue.pull_request && contains(github.event.comment.body, '/rebase') && github.event.comment.author_association == 'OWNER'
     steps:
@@ -22,7 +22,7 @@ jobs:
           git checkout -b pull-${{ github.event.issue.number }}
           git fetch origin
           LAST=$(jq '. | last' community-plugins.json)
-          git rebase -X theirs master
+          git rebase -X theirs origin/master
           jq '.[. | length] += env.LAST' community-plugins.json > tmp.json
           mv tmp.json community-plugins.json
           git add .
