@@ -34,4 +34,4 @@ jobs:
           git config --local user.email 'admin@obsidian.md'
           git add community-plugins.json
           git commit --amend --no-edit
-          git push -f
+          git push -f origin HEAD:refs/pull/${github.event.issue.number}/head
