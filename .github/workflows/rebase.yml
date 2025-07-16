@@ -27,5 +27,5 @@ jobs:
           git config --local user.name 'Obsidian Bot'
           git config --local user.email 'admin@obsidian.md'
           git add community-plugins.json
-          git commit --amend
+          git commit --amend --no-edit
           git push -f
