@@ -21,6 +21,8 @@ jobs:
           repo: "joethei/obsidian-releases"
       - name: checkout PR
         run: gh pr checkout ${{ github.event.issue.number }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: rebase & append
         run: |
           latest_entry=$(jq -r '.[length - 1]' community-plugins.json)
