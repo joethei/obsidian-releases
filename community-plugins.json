@@ -17899,10 +17899,10 @@
     "repo": "goderyu/obsidian-blueprint-renderer"
   },
   {
-    "id": "calibre-import",
-	  "name": "Calibre Importer",
-    "description": "Import book metadata from Calibre and read your books in obsidian",
-	  "author": "Johannes Theiner",
-    "repo": "joethei/obsidian-calibre"
+    "id": "wallabag",
+    "name": "Wallabag",
+    "description": "Sync your Wallabag articles.",
+    "author": "Hüseyin Zengin",
+    "repo": "joethei/obsidian-wallabag"
   }
 ]
