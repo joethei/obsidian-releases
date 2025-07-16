@@ -17904,5 +17904,12 @@
     "author": "joethei",
     "description": "Import book metadata from Calibre and read your books",
     "repo": "joethei/obsidian-calibre"
+  },
+  {
+    "id": "wallabag",
+    "name": "Wallabag",
+  "author": "Hüseyin Zengin",
+    "description": "Sync your Wallabag articles.",
+    "repo": "joethei/obsidian-wallabag"
   }
 ]
