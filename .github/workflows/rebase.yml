@@ -1,0 +1,31 @@
+name: "rebase plugin PR"
+
+on:
+  issue_comment:
+    types: [created]
+    paths:
+      - community-plugins.json
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/rebase')
+    steps:
+      - name: install jq
+        run: sudo apt-get install jq
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          ref: "refs/pull/${{ github.event.issue.number }}/merge"
+      - name: rebase & append
+        run: |
+          latest_entry=$(jq -r '.[length - 1]' community-plugins.json)
+          git rebase -X ours master
+          cat community-plugins.json | jq --argjson entry "$latest_entry" '.[length] = $entry' > community-plugins.json
+      - name: amend commit & push
+        run: |
+          git config --local user.name 'Obsidian Bot'
+          git config --local user.email 'admin@obsidian.md'
+          git add community-plugins.json
+          git commit --amend --no-edit
+          git push -f
