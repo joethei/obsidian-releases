@@ -17897,5 +17897,12 @@
     "author": "goderyu",
     "description": "Render Unreal Engine Blueprint nodes as interactive visual diagrams using BlueprintUE rendering engine",
     "repo": "goderyu/obsidian-blueprint-renderer"
+  },
+  {
+    "id": "calibre-import",
+    "name": "Calibre Importer",
+    "author": "joethei",
+    "description": "Import book metadata from Calibre and read your books",
+    "repo": "joethei/obsidian-calibre"
   }
 ]
