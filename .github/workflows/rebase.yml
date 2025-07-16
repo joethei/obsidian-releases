@@ -9,7 +9,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: github.event.issue.pull_request && contains(github.event.comment.body, '/rebase') && contains(github.event.repository.collaborators, github.event.comment.user.login) 
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/rebase')
     steps:
       - name: install jq
         run: apt-get install jq
