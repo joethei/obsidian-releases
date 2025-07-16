@@ -3,7 +3,7 @@ name: "rebase plugin PR"
 on:
   issue_comment:
     types: [created]
-   paths:
+    paths:
       - community-plugins.json
 
 jobs:
