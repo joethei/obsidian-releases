@@ -14,9 +14,9 @@ jobs:
       - name: install jq
         run: sudo apt-get install jq
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref }}
+          ref: "refs/pull/${{ github.event.issue.number }}/merge"
       - name: rebase & append
         run: |
           latest_entry=$(jq -r '.[length - 1]' community-plugins.json)
