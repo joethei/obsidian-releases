@@ -17897,5 +17897,12 @@
     "author": "goderyu",
     "description": "Render Unreal Engine Blueprint nodes as interactive visual diagrams using BlueprintUE rendering engine",
     "repo": "goderyu/obsidian-blueprint-renderer"
+  },
+  {
+    "id": "wallabag",
+    "name": "Wallabag",
+    "repo": "joethei/obsidian-wallabag",
+    "description": "Sync your Wallabag articles.",
+    "author": "Hüseyin Zengin"
   }
 ]
