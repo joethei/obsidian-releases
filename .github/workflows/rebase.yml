@@ -12,7 +12,7 @@ jobs:
     if: github.event.issue.pull_request && contains(github.event.comment.body, '/rebase')
     steps:
       - name: install jq
-        run: apt-get install jq
+        run: sudo apt-get install jq
       - name: checkout
         uses: actions/checkout@v3
         with:
