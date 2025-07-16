@@ -13,18 +13,13 @@ jobs:
     steps:
       - name: install jq
         run: sudo apt-get install jq
-      - name: Get PR HEAD Ref
-        id: getRef
-        run: echo "pr_ref=$(gh pr view $PR_NUMBER --repo ${{ github.repository }} --json headRefName | jq -r '.headRefName')" >> $GITHUB_OUTPUT
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ github.event.issue.number }}
-
-      - name: Checkout
+      - name: Checkout master
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: ${{ steps.getRef.outputs.pr_ref }}
+          ref: "refs/pull/${{ github.event.number }}/merge"
+      - name: switch to PR context
+        run: gh pr checkout ${{ github.event.issue.number }}
       - name: rebase & append
         run: |
           latest_entry=$(jq -r '.[length - 1]' community-plugins.json)
