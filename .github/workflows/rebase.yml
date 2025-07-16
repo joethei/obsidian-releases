@@ -21,7 +21,7 @@ jobs:
         run: |
           latest_entry=$(jq -r '.[length - 1]' community-plugins.json)
       - name: rebase
-        run: git rebase --X theirs master
+        run: git rebase -X theirs master
       - name: append item
         run: cat community-plugins.json | jq --argjson entry "$latest_entry" '.[length] = $entry' > community-plugins.json
       - name: amend commit & push
