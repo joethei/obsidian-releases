@@ -20,7 +20,7 @@ jobs:
           ref: "master"
           repository: "joethei/obsidian-releases"
       - name: checkout PR
-        run: gh pr checkout ${{ github.event.issue.number }}
+        run: gh pr checkout ${{ github.event.issue.number }} --repo joethei/obsidian-releases
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: rebase & append
